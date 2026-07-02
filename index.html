@@ -52,6 +52,33 @@
 			padding: 2px 4px;
 			border-radius: 4px;
 		}
+        @media (max-width: 480px), (max-height: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                min-height: calc(100vh - 32px);
+            }
+
+            iframe {
+                height: auto;
+                min-height: 75vh;
+                flex: 1;
+            }
+
+            .note {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                padding: 0 8px;
+            }
+
+            code {
+                word-break: break-all;
+            }
+        }
 	</style>
 </head>
 <body>
