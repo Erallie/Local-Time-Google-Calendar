@@ -94,17 +94,32 @@
 	if (!srcParam) {
 		app.innerHTML = `
 			<div class="error">
-				<h2>No calendar specified.</h2>
+                <h1>Local Time Google Calendar</h1>
+				<h2>View Any Public Google Calendar in Your Local Time Zone</h2>
 
                 <p>This website can generate a link of a google calendar that always displays in the viewer's local time. This was made for the purpose of online events.</p>
+                <p>Share a public Google Calendar with anyone, anywhere in the world, and let every visitor see events automatically converted to <strong>their own local time zone</strong>.</p>
 
-				<p>Pass a Google Calendar source in the URL:</p>
+                <p>Instead of asking friends, coworkers, or community members to calculate time differences, simply share your custom link to this viewer. Whether someone is in Arizona, New York, London, Tokyo, or anywhere else, the calendar will display events in the time zone of the device they're using.</p>
+
+                <p>No account is required, and your visitors don't need to add the calendar to Google Calendar to view it.</p>
+                <h2>Instructions</h2>
+
+				<p>Just copy and paste the <code>src</code> attribute from the embed link of your public Google calendar after a <code>?</code> after the url like this:</p>
 
 				<p><code>?src=your_calendar@group.calendar.google.com</code></p>
 
 				<p>or</p>
 
 				<p><code>?src=https://calendar.google.com/calendar/embed?src=...</code></p>
+                <p>.</p>
+
+                <p>So the final link would be like this:</p>
+
+                <p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=your_calendar@group.calendar.google.com</code></p>
+                <p>or</p>
+
+                <p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=https://calendar.google.com/calendar/embed?src=...</code></p>
 			</div>
 		`;
 		throw new Error("Missing src");
