@@ -143,6 +143,8 @@
 
 	<iframe id="calendar" class="hidden"></iframe>
 
+    <div class="note" id="githubLink">View my other code projects <a href="https://github.com/Erallie" target="_blank">here</a>.</div>
+
 	<div class="note hidden" id="note"></div>
 </div>
 
@@ -153,12 +155,14 @@
     const instructions = document.getElementById("instructions");
     const iframe = document.getElementById("calendar");
     const note = document.getElementById("note");
+    const githubLink = document.getElementById("githubLink");
 
     if (!srcParam) {
         throw new Error("Missing src");
     }
 
     instructions.classList.add("hidden");
+    githubLink.classList.add("hidden");
     iframe.classList.remove("hidden");
     note.classList.remove("hidden");
 
