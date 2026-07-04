@@ -52,6 +52,16 @@
 			padding: 2px 4px;
 			border-radius: 4px;
 		}
+
+        #instructions {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        ul {
+            margin: auto;
+            max-width: 300px;
+            text-align: left;
+        }
         .hidden {
             display: none;
         }
@@ -91,20 +101,32 @@
 		<h1>Local Time Google Calendar</h1>
 		<h2>View Any Public Google Calendar in Your Local Time Zone</h2>
 
-		<p>This website can generate a link of a Google Calendar that always displays in the viewer's local time. This was made for the purpose of online events.</p>
-		<p>Share a public Google Calendar with anyone, anywhere in the world, and let every visitor see events automatically converted to <strong>their own local time zone</strong>.</p>
+		<p>Have you ever wanted to share a Google Calendar with people in different time zones without making everyone convert the event times themselves? This page makes that easy.</p>
 
-		<p>Instead of asking friends, coworkers, or community members to calculate time differences, simply share your custom link to this viewer. Whether someone is in Arizona, New York, London, Tokyo, or anywhere else, the calendar will display events in the time zone of the device they're using.</p>
+        <p>Simply provide the src value from any public Google Calendar embed link, and this viewer will automatically display the calendar using <strong>the visitor's own local time zone</strong>. Whether someone is in Arizona, New York, London, Tokyo, Sydney, or anywhere else in the world, Google Calendar will display the events in their local time.</p>
 
-		<p>No account is required, and your visitors don't need to add the calendar to Google Calendar to view it.</p>
+        <p>This tool is perfect for:</p>
 
-		<h2>Instructions</h2>
+        <ul>
+            <li>Online events</li>
+            <li>Livestream schedules</li>
+            <li>Community calendars</li>
+            <li>Gaming events</li>
+            <li>Virtual conventions</li>
+            <li>Club meetings</li>
+            <li>International teams</li>
+            <li>Anyone sharing events across multiple time zones</li>
+        </ul>
+
+        <p>No Google account is required to view the calendar, and visitors do not need to add the calendar to their own Google Calendar.</p>
+
+		<h2>How to Use</h2>
 
 		<p>Just copy and paste the <code>src</code> attribute from the embed link of your public Google Calendar after a <code>?</code> in the URL like this:</p>
 
 		<p><code>?src=your_calendar@group.calendar.google.com</code></p>
 
-		<p>or</p>
+		<p>You can also provide an entire Google Calendar embed URL:</p>
 
 		<p><code>?src=https://calendar.google.com/calendar/embed?src=...</code></p>
 
@@ -115,6 +137,8 @@
 		<p>or</p>
 
 		<p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=https://calendar.google.com/calendar/embed?src=...</code></p>
+
+        <p>When someone opens your generated link, the calendar is automatically displayed in <strong>their own local time zone</strong>, making it easy to share schedules with people anywhere in the world.</p>
 	</div>
 
 	<iframe id="calendar" class="hidden"></iframe>
