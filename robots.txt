@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://erallie.github.io/Local-Time-Google-Calendar/sitemap.xml
+Sitemap: https://calendar.gozarproductions.com/sitemap.xml
