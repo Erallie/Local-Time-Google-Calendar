@@ -52,6 +52,9 @@
 			padding: 2px 4px;
 			border-radius: 4px;
 		}
+        .hidden {
+            display: none;
+        }
         @media (max-width: 480px), (max-height: 480px) {
             body {
                 padding: 16px;
@@ -83,80 +86,81 @@
 </head>
 <body>
 
-<div class="container" id="app"></div>
+<div class="container" id="app">
+	<div class="error" id="instructions">
+		<h1>Local Time Google Calendar</h1>
+		<h2>View Any Public Google Calendar in Your Local Time Zone</h2>
+
+		<p>This website can generate a link of a Google Calendar that always displays in the viewer's local time. This was made for the purpose of online events.</p>
+		<p>Share a public Google Calendar with anyone, anywhere in the world, and let every visitor see events automatically converted to <strong>their own local time zone</strong>.</p>
+
+		<p>Instead of asking friends, coworkers, or community members to calculate time differences, simply share your custom link to this viewer. Whether someone is in Arizona, New York, London, Tokyo, or anywhere else, the calendar will display events in the time zone of the device they're using.</p>
+
+		<p>No account is required, and your visitors don't need to add the calendar to Google Calendar to view it.</p>
+
+		<h2>Instructions</h2>
+
+		<p>Just copy and paste the <code>src</code> attribute from the embed link of your public Google Calendar after a <code>?</code> in the URL like this:</p>
+
+		<p><code>?src=your_calendar@group.calendar.google.com</code></p>
+
+		<p>or</p>
+
+		<p><code>?src=https://calendar.google.com/calendar/embed?src=...</code></p>
+
+		<p>So the final link would be like this:</p>
+
+		<p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=your_calendar@group.calendar.google.com</code></p>
+
+		<p>or</p>
+
+		<p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=https://calendar.google.com/calendar/embed?src=...</code></p>
+	</div>
+
+	<iframe id="calendar" class="hidden"></iframe>
+
+	<div class="note hidden" id="note"></div>
+</div>
 
 <script>
-	const app = document.getElementById("app");
-
 	const params = new URLSearchParams(location.search);
-	const srcParam = params.get("src");
+    const srcParam = params.get("src");
 
-	if (!srcParam) {
-		app.innerHTML = `
-			<div class="error">
-                <h1>Local Time Google Calendar</h1>
-				<h2>View Any Public Google Calendar in Your Local Time Zone</h2>
+    const instructions = document.getElementById("instructions");
+    const iframe = document.getElementById("calendar");
+    const note = document.getElementById("note");
 
-                <p>This website can generate a link of a google calendar that always displays in the viewer's local time. This was made for the purpose of online events.</p>
-                <p>Share a public Google Calendar with anyone, anywhere in the world, and let every visitor see events automatically converted to <strong>their own local time zone</strong>.</p>
+    if (!srcParam) {
+        throw new Error("Missing src");
+    }
 
-                <p>Instead of asking friends, coworkers, or community members to calculate time differences, simply share your custom link to this viewer. Whether someone is in Arizona, New York, London, Tokyo, or anywhere else, the calendar will display events in the time zone of the device they're using.</p>
+    instructions.classList.add("hidden");
+    iframe.classList.remove("hidden");
+    note.classList.remove("hidden");
 
-                <p>No account is required, and your visitors don't need to add the calendar to Google Calendar to view it.</p>
-                <h2>Instructions</h2>
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-				<p>Just copy and paste the <code>src</code> attribute from the embed link of your public Google calendar after a <code>?</code> after the url like this:</p>
+    let calendarURL;
 
-				<p><code>?src=your_calendar@group.calendar.google.com</code></p>
+    if (srcParam.startsWith("http")) {
+        calendarURL = new URL(srcParam);
 
-				<p>or</p>
+        calendarURL.searchParams.set("ctz", timezone);
 
-				<p><code>?src=https://calendar.google.com/calendar/embed?src=...</code></p>
-                <p>.</p>
+        if (!calendarURL.pathname.includes("/embed")) {
+            calendarURL.pathname = "/calendar/embed";
+        }
+    } else {
+        calendarURL = new URL("https://calendar.google.com/calendar/embed");
 
-                <p>So the final link would be like this:</p>
+        calendarURL.searchParams.set("src", srcParam);
+        calendarURL.searchParams.set("ctz", timezone);
+    }
 
-                <p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=your_calendar@group.calendar.google.com</code></p>
-                <p>or</p>
+    calendarURL.searchParams.set("mode", "MONTH");
 
-                <p><code>https://erallie.github.io/Local-Time-Google-Calendar/?src=https://calendar.google.com/calendar/embed?src=...</code></p>
-			</div>
-		`;
-		throw new Error("Missing src");
-	}
-
-	const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-	let calendarURL;
-
-	if (srcParam.startsWith("http")) {
-		calendarURL = new URL(srcParam);
-
-		calendarURL.searchParams.set("ctz", timezone);
-
-		if (!calendarURL.pathname.includes("/embed")) {
-			calendarURL.pathname = "/calendar/embed";
-		}
-	}
-	else {
-		calendarURL = new URL("https://calendar.google.com/calendar/embed");
-
-		calendarURL.searchParams.set("src", srcParam);
-		calendarURL.searchParams.set("ctz", timezone);
-	}
-
-	calendarURL.searchParams.set("mode", "MONTH");
-
-	const iframe = document.createElement("iframe");
-	iframe.src = calendarURL.toString();
-
-	const note = document.createElement("div");
-	note.className = "note";
-	note.textContent =
-		`*Displaying events in the local timezone for ${timezone}`;
-
-	app.appendChild(iframe);
-	app.appendChild(note);
+    iframe.src = calendarURL.toString();
+    note.textContent = `*Displaying events in the local timezone for ${timezone}`;
 </script>
 
 </body>
