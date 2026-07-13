@@ -9,6 +9,6 @@ Just copy and paste the `src` attribute from the embed link after a `?` after th
 - `?src=your_calendar@group.calendar.google.com`
 
 So the final link would be like this:
-- `https://erallie.github.io/Local-Time-Google-Calendar/?src=your_calendar@group.calendar.google.com`
+- `https://calendar.gozarproductions.com/?src=your_calendar@group.calendar.google.com`
 
-You can find the website at https://erallie.github.io/Local-Time-Google-Calendar/
+You can find the website at https://calendar.gozarproductions.com
