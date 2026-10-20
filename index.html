@@ -57,7 +57,7 @@
 			color: #666;
 		}
 
-        #githubLink {
+        #githubLink, #learnMoreLink {
             font-style: normal;
         }
 
@@ -169,6 +169,8 @@
     View our other projects at <a href="https://GozarProductions.com" target="_blank">GozarProductions.com</a></div>
 
 	<div class="note hidden" id="note"></div>
+
+    <div class="note hidden" id="learnMoreLink"><a href="/">Click here</a> to learn more</div>
 </div>
 
 <script>
@@ -179,6 +181,7 @@
     const iframe = document.getElementById("calendar");
     const note = document.getElementById("note");
     const githubLink = document.getElementById("githubLink");
+    const learnMoreLink = document.getElementById("learnMoreLink");
 
     if (!srcParam) {
         throw new Error("Missing src");
@@ -188,6 +191,8 @@
     githubLink.classList.add("hidden");
     iframe.classList.remove("hidden");
     note.classList.remove("hidden");
+    learnMoreLink.classList.remove("hidden");
+
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -212,15 +217,6 @@
 
     iframe.src = calendarURL.toString();
     note.textContent = `*Displaying events in the local timezone for ${timezone}`;
-
-    const lineBreak = document.createElement("br");
-    const learnMore = document.createElement("a");
-
-    learnMore.href = "/";
-    learnMore.textContent = "Learn More";
-
-    note.appendChild(lineBreak);
-    note.appendChild(learnMore);
 </script>
 
 </body>
