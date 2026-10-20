@@ -165,7 +165,7 @@
 
 	<iframe id="calendar" class="hidden"></iframe>
 
-    <div class="note" id="githubLink">View our <a href="https://https://github.com/Erallie/Local-Time-Google-Calendar" target="_blank">GitHub</a><br>
+    <div class="note" id="githubLink">View our <a href="https://github.com/Erallie/Local-Time-Google-Calendar" target="_blank">GitHub</a><br>
     View our other projects at <a href="https://GozarProductions.com" target="_blank">GozarProductions.com</a></div>
 
 	<div class="note hidden" id="note"></div>
@@ -212,6 +212,15 @@
 
     iframe.src = calendarURL.toString();
     note.textContent = `*Displaying events in the local timezone for ${timezone}`;
+
+    const lineBreak = document.createElement("br");
+    const learnMore = document.createElement("a");
+
+    learnMore.href = "/";
+    learnMore.textContent = "Learn More";
+
+    note.appendChild(lineBreak);
+    note.appendChild(learnMore);
 </script>
 
 </body>
